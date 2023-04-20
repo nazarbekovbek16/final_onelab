@@ -47,6 +47,7 @@ func (h *HistoryBookHandler) Rent(c echo.Context) error {
 		h.log.Info("unmarshal error")
 		return err
 	}
+	// нужно изучить как использовать анмаршал в echo 
 	err = h.historyBookManager.HistoryBookService.Create(c.Request().Context(), data)
 	if err != nil {
 		h.log.Info("history of book was failed")
