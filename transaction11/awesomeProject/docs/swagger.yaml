@@ -1,0 +1,119 @@
+basePath: /api/v1
+definitions:
+  model.HistoryBook:
+    properties:
+      bookID:
+        type: integer
+      duration:
+        type: integer
+      id:
+        type: integer
+      isGiven:
+        type: boolean
+      isPaid:
+        type: boolean
+      price:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  model.Income:
+    properties:
+      bookID:
+        type: integer
+      total:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: |-
+    API service for User Storage.
+    Where they can create, retrieve, update, delete books.
+    And can rent these books
+  termsOfService: http://swagger.io/terms/
+  title: OneLab HomeWork API
+  version: "1.0"
+paths:
+  /debtors:
+    get:
+      consumes:
+      - application/json
+      description: get records of users with book
+      operationId: Debtors
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.HistoryBook'
+      produces:
+      - application/json
+      responses: {}
+      summary: Debtors
+      tags:
+      - History of Book
+  /incomes:
+    get:
+      consumes:
+      - application/json
+      description: get list of incomes of each books
+      operationId: Income
+      parameters:
+      - description: incomes
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Income'
+      produces:
+      - application/json
+      responses: {}
+      summary: Incomes
+      tags:
+      - History of Book
+  /rent:
+    post:
+      consumes:
+      - application/json
+      description: create record about renting of book
+      operationId: Rent
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.HistoryBook'
+      produces:
+      - application/json
+      responses: {}
+      summary: Rent
+      tags:
+      - History of Book
+  /return:
+    post:
+      consumes:
+      - application/json
+      description: update record when user return book
+      operationId: Return
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Return
+      tags:
+      - History of Book
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

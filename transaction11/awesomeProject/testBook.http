@@ -1,0 +1,10 @@
+POST localhost:8080/books
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title":"something",
+  "author":"something"
+}
+
+

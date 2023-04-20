@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API service for User Storage.\nWhere they can create, retrieve, update, delete books.\nAnd can rent these books",
+        "title": "OneLab HomeWork API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/debtors": {
+            "get": {
+                "description": "get records of users with book",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History of Book"
+                ],
+                "summary": "Debtors",
+                "operationId": "Debtors",
+                "parameters": [
+                    {
+                        "description": "history book info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.HistoryBook"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/incomes": {
+            "get": {
+                "description": "get list of incomes of each books",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History of Book"
+                ],
+                "summary": "Incomes",
+                "operationId": "Income",
+                "parameters": [
+                    {
+                        "description": "incomes",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.Income"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/rent": {
+            "post": {
+                "description": "create record about renting of book",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History of Book"
+                ],
+                "summary": "Rent",
+                "operationId": "Rent",
+                "parameters": [
+                    {
+                        "description": "history book info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.HistoryBook"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/return": {
+            "post": {
+                "description": "update record when user return book",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History of Book"
+                ],
+                "summary": "Return",
+                "operationId": "Return",
+                "parameters": [
+                    {
+                        "description": "history book info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "model.HistoryBook": {
+            "type": "object",
+            "properties": {
+                "bookID": {
+                    "type": "integer"
+                },
+                "duration": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isGiven": {
+                    "type": "boolean"
+                },
+                "isPaid": {
+                    "type": "boolean"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Income": {
+            "type": "object",
+            "properties": {
+                "bookID": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

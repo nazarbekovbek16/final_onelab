@@ -1,0 +1,286 @@
+basePath: /api/v1
+definitions:
+  model.Book:
+    properties:
+      author:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.Card:
+    properties:
+      id:
+        type: integer
+      money:
+        type: number
+      userID:
+        type: integer
+    type: object
+  model.HistoryBook:
+    properties:
+      bookID:
+        type: integer
+      duration:
+        type: integer
+      id:
+        type: integer
+      isGiven:
+        type: boolean
+      isPaid:
+        type: boolean
+      price:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  model.Income:
+    properties:
+      bookID:
+        type: integer
+      total:
+        type: integer
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+      surname:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: |-
+    API service for User, Book Storage.
+    Where they can create, retrieve, update, delete books.
+    And can rent these books
+  termsOfService: http://swagger.io/terms/
+  title: OneLab HomeWork
+  version: "1.0"
+paths:
+  /books:
+    post:
+      consumes:
+      - application/json
+      description: create book
+      operationId: BookCreate
+      parameters:
+      - description: book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Book'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create
+      tags:
+      - Book
+  /books/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Delete book
+      operationId: BookDelete
+      parameters:
+      - description: book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Book'
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete
+      tags:
+      - Book
+  /books/:is:
+    get:
+      consumes:
+      - application/json
+      description: get book
+      operationId: Book
+      parameters:
+      - description: book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Book'
+      produces:
+      - application/json
+      responses: {}
+      summary: Get
+      tags:
+      - BookGet
+  /cards:
+    post:
+      consumes:
+      - application/json
+      description: create card
+      operationId: Card
+      parameters:
+      - description: card info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Card'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create
+      tags:
+      - Card
+  /rent/:id:
+    post:
+      consumes:
+      - application/json
+      description: make request to another service to create record about renting
+        of book
+      operationId: Rent
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.HistoryBook'
+      produces:
+      - application/json
+      responses: {}
+      summary: Rent
+      tags:
+      - History of Book
+  /rent/debtors:
+    get:
+      consumes:
+      - application/json
+      description: make request to another service to get records of users with book
+      operationId: Debtors
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.HistoryBook'
+      produces:
+      - application/json
+      responses: {}
+      summary: Debtors
+      tags:
+      - History of Book
+  /rent/incomes:
+    get:
+      consumes:
+      - application/json
+      description: make request to another service to get list of incomes of each
+        books
+      operationId: Income
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.Income'
+      produces:
+      - application/json
+      responses: {}
+      summary: Incomes
+      tags:
+      - History of Book
+  /rent/return/:id:
+    post:
+      consumes:
+      - application/json
+      description: make request to another service to update record when user return
+        book
+      operationId: Return
+      parameters:
+      - description: history book info
+        in: body
+        name: input
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Return
+      tags:
+      - History of Book
+  /users/logout:
+    delete:
+      consumes:
+      - application/json
+      description: delete session
+      operationId: delete-session
+      parameters:
+      - description: user info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: Logout
+      tags:
+      - user
+  /users/signin:
+    post:
+      consumes:
+      - application/json
+      description: authorization
+      operationId: login
+      parameters:
+      - description: credentials
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: SignIn
+      tags:
+      - user
+  /users/signup:
+    post:
+      consumes:
+      - application/json
+      description: create account
+      operationId: create-user
+      parameters:
+      - description: user info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: Sign-Up
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

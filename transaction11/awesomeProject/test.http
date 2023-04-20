@@ -1,0 +1,63 @@
+POST localhost:8080/api/v1/rent/1
+#Content-Type: application/json
+#
+#{
+#  "id":3,
+#  "name":"bek1",
+#  "surname":"zz",
+#  "email":"bek1@mail.ru",
+#  "password":"12345"
+#}
+###
+POST localhost:8080/api/v1/users/signup
+Content-Type: application/json
+
+{
+  "id":3,
+  "name":"bek1",
+  "surname":"zz",
+  "email":"bek1@mail.ru",
+  "password":"12345"
+}
+
+###
+POST localhost:8080/cards
+Content-Type: application/json
+
+{
+  "id":2,
+  "userID":1,
+  "money":1500
+}
+
+###
+POST localhost:8080/api/v1/rent/1
+Content-Type: application/json
+
+{
+  "id":  4,
+  "duration": 5
+}
+###
+DELETE localhost:8080/api/v1/users/logout
+#Content-Type: application/json
+#
+#{
+#  "id":3,
+#  "name":"bek1",
+#  "surname":"zz",
+#  "email":"bek1@mail.ru",
+#  "password":"12345"
+#}
+
+###
+POST localhost:8080/api/v1/books/
+#Content-Type: application/json
+#
+#{
+#  "id":3,
+#  "name":"bek1",
+#  "surname":"zz",
+#  "email":"bek1@mail.ru",
+#  "password":"12345"
+#}
