@@ -4,7 +4,7 @@ import (
 	"awesomeProject/model"
 	"context"
 )
-
+// не irepo а manager or repository
 type IUserRepository interface {
 	GetUser(ctx context.Context, ID int) (model.User, error)
 	GetByEmail(ctx context.Context, username string) (model.User, error)
